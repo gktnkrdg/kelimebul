@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using KelimeBul.API.Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -26,10 +27,12 @@ namespace KelimeBul.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddSingleton<ITurkishDictionary, TurkishDictionary>();
         }
 
+
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env,ITurkishDictionary turkishDictionary)
         {
             if (env.IsDevelopment())
             {
@@ -46,7 +49,7 @@ namespace KelimeBul.API
             {
                 endpoints.MapControllers();
             });
-            TurkishDictionary.ReadTurkishWordsFile();
+            turkishDictionary.ReadTurkishWordsFile();
         }
     }
 }
