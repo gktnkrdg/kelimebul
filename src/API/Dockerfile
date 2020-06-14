@@ -1,25 +1,20 @@
-#See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
-
-FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-buster-slim AS base
-WORKDIR /app
-EXPOSE 80
-EXPOSE 443
-
-FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
+# NuGet restore
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build
 WORKDIR /src
-COPY ["KelimeBul.API.csproj", ""]
-RUN dotnet restore "./KelimeBul.API.csproj"
+COPY *.sln .
+COPY KelimeBul.API/*.csproj KelimeBul.API/
+RUN dotnet restore
 COPY . .
-WORKDIR "/src/."
-RUN dotnet build "KelimeBul.API.csproj" -c Release -o /app/build
 
+
+# publish
 FROM build AS publish
-RUN dotnet publish "KelimeBul.API.csproj" -c Release -o /app/publish
+WORKDIR /src/KelimeBul.API
+RUN dotnet publish -c Release -o /src/publish
 
-FROM base AS final
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.1 AS runtime
 WORKDIR /app
-COPY --from=publish /app/publish .
-
-# ENTRYPOINT ["dotnet", "KelimeBul.API.dll"
+COPY --from=publish /src/publish .
+# ENTRYPOINT ["dotnet", "KelimeBul.API.dll"]
 # heroku uses the following
-CMD ASPNETCORE_URLS=http://*:$PORT dotnet	KelimeBul.API.dll]
+CMD ASPNETCORE_URLS=http://*:$PORT dotnet KelimeBul.API.dll
