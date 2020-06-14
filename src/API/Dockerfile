@@ -16,7 +16,7 @@ FROM mcr.microsoft.com/dotnet/core/aspnet:3.1 AS runtime
 WORKDIR /app
 COPY --from=publish /src/publish ./
 COPY tr.txt /app/
-ENTRYPOINT ["dotnet", "KelimeBul.API.dll"]
+#ENTRYPOINT ["dotnet", "KelimeBul.API.dll"]
 ## heroku uses the following
-#CMD ASPNETCORE_URLS=http://*:$PORT dotnet KelimeBul.API.dll
+CMD ASPNETCORE_URLS=http://*:$PORT dotnet KelimeBul.API.dll
 #
