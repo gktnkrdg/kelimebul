@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30204.135
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KelimeBul.API", "src/API/KelimeBul.API.csproj", "{5D189561-9BAF-4CB6-A1A0-02BA586BB135}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KelimeBul.API", "src\KelimeBul.API\KelimeBul.API.csproj", "{5D189561-9BAF-4CB6-A1A0-02BA586BB135}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KelimeBul.Web", "src\KelimeBul.Web\KelimeBul.Web.csproj", "{15E5A2C3-C097-484C-A97A-2A85D4032238}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{5D189561-9BAF-4CB6-A1A0-02BA586BB135}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5D189561-9BAF-4CB6-A1A0-02BA586BB135}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5D189561-9BAF-4CB6-A1A0-02BA586BB135}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15E5A2C3-C097-484C-A97A-2A85D4032238}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15E5A2C3-C097-484C-A97A-2A85D4032238}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15E5A2C3-C097-484C-A97A-2A85D4032238}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15E5A2C3-C097-484C-A97A-2A85D4032238}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
