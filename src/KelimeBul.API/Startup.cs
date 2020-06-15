@@ -32,7 +32,7 @@ namespace KelimeBul.API
 
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env,ITurkishDictionary turkishDictionary)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ITurkishDictionary turkishDictionary)
         {
             if (env.IsDevelopment())
             {
@@ -44,7 +44,11 @@ namespace KelimeBul.API
             app.UseRouting();
 
             app.UseAuthorization();
-
+            app.UseCors(option =>
+         option.AllowAnyOrigin()
+             .AllowAnyMethod()
+             .AllowAnyHeader()
+             );
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
