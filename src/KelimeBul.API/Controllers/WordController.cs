@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Security.Cryptography.Xml;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using KelimeBul.API.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -35,21 +36,19 @@ namespace KelimeBul.API.Controllers
         }
         [HttpGet]
         [Route("random")]
-        public string Random([FromQuery][Required()] int length)
+        public IActionResult Random([FromQuery][Required()] int length)
         {
-            return TurkishDictionary.Words.Where(x => x.Length == length).RandomElement<string>();
+            var word = TurkishDictionary.Words.Where(x => x.Length == length).RandomElement<string>();
+            return new OkObjectResult(new { word = word });
         }
         [HttpGet]
         [Route("{word}")]
-        public bool Get([FromRoute]string word)
+        public IActionResult Get([FromRoute] string word)
         {
-            return TurkishDictionary.Words.Contains(word.ToLower());
+            return new OkObjectResult(new { exist = TurkishDictionary.Words.Contains(word.ToLower()) });
+
         }
-        public class CountModel
-        {
-            public int WordLength { get; set; }
-            public int Count { get; set; }
-        }
+
         [HttpGet("count")]
         public List<CountModel> Count()
         {
