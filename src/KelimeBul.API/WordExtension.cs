@@ -9,6 +9,8 @@ namespace KelimeBul.API
 {
     public static class WordExtension
     {
+
+
         //https://stackoverflow.com/questions/41076904/check-if-chars-of-a-string-contains-in-another-string-with-linq
         public static bool CanBeMadeFromLetters(this string word, string tileLetters)
         {
