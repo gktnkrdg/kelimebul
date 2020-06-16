@@ -22,7 +22,10 @@ namespace KelimeBul.API
                 tileLetterCounts.ContainsKey(letter.Key)
                 && tileLetterCounts[letter.Key] >= letter.Value);
         }
-
+        public static string Shuffle(this string s)
+        {
+            return new string(s.ToCharArray().OrderBy(x => Guid.NewGuid()).ToArray());
+        }
         //Gets dictionary of letter/# of letter in word
         public static Dictionary<char, int> GetLetterCounts(string word)
         {

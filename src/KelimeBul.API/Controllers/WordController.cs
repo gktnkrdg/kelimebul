@@ -39,7 +39,7 @@ namespace KelimeBul.API.Controllers
         public IActionResult Random([FromQuery][Required()] int length)
         {
             var word = TurkishDictionary.Words.Where(x => x.Length == length).RandomElement<string>();
-            return new OkObjectResult(new { word = word });
+            return new OkObjectResult(new { word = word .Shuffle()});
         }
         [HttpGet]
         [Route("{word}")]
