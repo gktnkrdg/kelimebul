@@ -1,6 +1,5 @@
 ﻿import React, { Component } from 'react';
 import { Nav, NavItem, NavLink, Button } from 'reactstrap';
-import history from './history';
 export class Home extends Component {
     static displayName = Home.name;
     constructor(props) {
@@ -18,7 +17,7 @@ export class Home extends Component {
         return (
             <div>
                 <h1>KELİME BUL</h1>
-                <Button onClick={() => this.props.history.replace('/Counter') } color="success">Oyuna Başla</Button>
+                <Button onClick={() => this.props.history.replace('/Game') } color="success">Oyuna Başla</Button>
                
             </div>
         );
