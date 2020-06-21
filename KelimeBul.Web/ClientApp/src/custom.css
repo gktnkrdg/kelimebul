@@ -1,0 +1,42 @@
+/* Provide sufficient contrast against white background */
+a {
+  color: #0366d6;
+}
+
+code {
+  color: #E01A76;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.title {
+    font-family: monospace;
+    font-size: 50px;
+    letter-spacing: 10px;
+    line-height: 20px;
+ /*   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;*/
+}
+.word-input {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+    border: 1px solid black;
+    font-family: monospace;
+    font-size: 50px;
+    padding-left: 5px;
+}
+.word {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+    border: 1px solid black;
+    font-family: monospace;
+    font-size: 50px;
+    padding-left: 5px;
+    line-height: 1em; /* or */
+}
