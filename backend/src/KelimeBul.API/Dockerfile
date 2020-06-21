@@ -18,4 +18,3 @@ COPY tr.txt /src/
 #ENTRYPOINT ["dotnet", "KelimeBul.API.dll"]
 ## heroku uses the following
 CMD ASPNETCORE_URLS=http://*:$PORT dotnet KelimeBul.API.dll
-#

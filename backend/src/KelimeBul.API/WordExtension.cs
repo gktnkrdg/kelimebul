@@ -17,7 +17,6 @@ namespace KelimeBul.API
 
             var tileLetterCounts = GetLetterCounts(tileLetters);
             var wordLetterCounts = GetLetterCounts(word);
-
             return wordLetterCounts.All(letter =>
                 tileLetterCounts.ContainsKey(letter.Key)
                 && tileLetterCounts[letter.Key] >= letter.Value);

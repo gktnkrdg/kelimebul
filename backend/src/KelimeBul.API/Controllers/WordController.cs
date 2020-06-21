@@ -21,12 +21,13 @@ namespace KelimeBul.API.Controllers
         private static readonly Random random = new Random();
         [Route("derive/{word}")]
         [HttpGet]
-        public IEnumerable<string> Derive(string word)
+        public IEnumerable<string> Derive(string word,int minLength=4,int maxLength=0)
         {
             var result = new List<string>();
             if (word.Length > 10)
                 return result;
-            var turkishWords = TurkishDictionary.Words.Where(x => (x.Length <= word.Length) && x.Length > 3);
+            maxLength = (maxLength == 0 ? word.Length : maxLength);
+            var turkishWords = TurkishDictionary.Words.Where(x => (x.Length <= maxLength) && x.Length >= minLength);
             foreach (var turkishWord in turkishWords)
             {
                 if (turkishWord.CanBeMadeFromLetters(word.ToLower()))
@@ -34,6 +35,7 @@ namespace KelimeBul.API.Controllers
             }
             return result;
         }
+
         [HttpGet]
         [Route("random")]
         public IActionResult Random([FromQuery][Required()] int length)
@@ -41,6 +43,7 @@ namespace KelimeBul.API.Controllers
             var word = TurkishDictionary.Words.Where(x => x.Length == length).RandomElement<string>();
             return new OkObjectResult(new { word = word .Shuffle()});
         }
+
         [HttpGet]
         [Route("{word}")]
         public IActionResult Get([FromRoute] string word)
