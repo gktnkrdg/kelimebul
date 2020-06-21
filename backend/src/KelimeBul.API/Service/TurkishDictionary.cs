@@ -15,6 +15,7 @@ namespace KelimeBul.API
         {
             _env = env;
         }
+
         //mythes-tr turkish database used.
         //https://github.com/maidis/mythes-tr
         public static HashSet<string> Words = new HashSet<string>();

@@ -13,7 +13,7 @@ namespace KelimeBul.API
         public static T RandomElement<T>(this IEnumerable<T> enumerable)
         {
             if (enumerable == null)
-                throw new ArgumentNullException("enumerable");
+                throw new ArgumentNullException("enumerable is null");
 
             var count = enumerable.Count();
 
