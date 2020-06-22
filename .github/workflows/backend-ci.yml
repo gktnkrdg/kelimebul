@@ -1,5 +1,5 @@
 
-name: CI
+name: backend-ci
 
 on:
   push:
@@ -9,7 +9,7 @@ on:
       - '.github/workflows/main.yml'
 
 jobs:
-  build_kelimebul:
+  build_kelimebul-api:
     runs-on: ubuntu-16.04
     steps:
     - uses: actions/checkout@v1
