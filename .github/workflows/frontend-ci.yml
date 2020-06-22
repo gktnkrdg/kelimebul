@@ -1,4 +1,4 @@
-name: CI
+name: frontend-ci
 
 on: 
   push:
@@ -27,7 +27,7 @@ jobs:
         yarn install
     
       env:
-        CI: true
+        CI: false 
       
     - name: yarn build
       run: |
