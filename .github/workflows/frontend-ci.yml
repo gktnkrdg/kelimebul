@@ -23,6 +23,7 @@ jobs:
     
     - name: yarn install
       run: |
+        cd ./frontend/src
         yarn install
     
       env:
@@ -30,6 +31,7 @@ jobs:
       
     - name: yarn build
       run: |
+        cd ./frontend/src
         yarn run build --if-present
     
     - name: Add remote origin
