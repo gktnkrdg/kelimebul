@@ -25,9 +25,7 @@ jobs:
       run: |
         cd ./frontend/src
         yarn install
-    
-      env:
-        CI: ""
+
       
     - name: yarn build
       run: |
