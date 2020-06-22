@@ -1,3 +1,41 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  /* background-color: #282c34; */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
 /* Provide sufficient contrast against white background */
 a {
   color: #0366d6;
@@ -21,22 +59,24 @@ code {
  /*   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;*/
 }
 .word-input {
-    width: 50px;
+    width: 40px;
     height: 50px;
     margin-right: 10px;
     border: 1px solid black;
     font-family: monospace;
-    font-size: 50px;
+    font-size: 45px;
+    padding:0px;
     padding-left: 5px;
 }
 .word {
     display: inline-block;
-    width: 50px;
+    width: 40px;
     height: 50px;
     margin-right: 10px;
     border: 1px solid black;
     font-family: monospace;
-    font-size: 50px;
+    font-size: 45px;
+    padding:0px;
     padding-left: 5px;
     line-height: 1em; /* or */
 }
