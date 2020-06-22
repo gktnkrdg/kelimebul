@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import { Grid } from '@material-ui/core';
 function makeRandomWord(length) {
     return fetch('https://kelimebul-api.herokuapp.com/api/v1/words/random?length=' + length)
         .then(result => result.json())
@@ -192,9 +191,6 @@ const useStyles = makeStyles((theme) => ({
                     <h2> {topMessage} </h2>
                 </div>
                 <div>
-
-                   
-
                         <form autocomplete="off" onSubmit={e => e.preventDefault()}>
                             <div class="d-flex flex-row justify-content-center">
 
@@ -213,11 +209,6 @@ const useStyles = makeStyles((theme) => ({
                                 ))}
                             </div>
                         </form>
-
-                                    
-
-
-
                 </div>
                 <div>
                     {correctWords.length > 0 &&
