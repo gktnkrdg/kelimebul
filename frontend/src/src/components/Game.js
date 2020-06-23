@@ -147,7 +147,6 @@ const useStyles = makeStyles((theme) => ({
                         }
                     })
             }
-            //checkwordexist
 
         }
         else {
