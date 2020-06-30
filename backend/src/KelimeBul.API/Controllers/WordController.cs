@@ -18,7 +18,6 @@ namespace KelimeBul.API.Controllers
     [Route("api/v1/words")]
     public class WordController : ControllerBase
     {
-        private static readonly Random random = new Random();
         [Route("derive/{word}")]
         [HttpGet]
         public IEnumerable<string> Derive(string word,int minLength=4,int maxLength=0)
@@ -41,23 +40,33 @@ namespace KelimeBul.API.Controllers
         public IActionResult Random([FromQuery][Required()] int length)
         {
             var word = TurkishDictionary.Words.Where(x => x.Length == length).RandomElement<string>();
-            return new OkObjectResult(new { word = word .Shuffle()});
+            if (word.Length > 0)
+            {
+                return new OkObjectResult(new RandomWordResponseModel { Word = word.Shuffle() });
+            }
+            return NotFound();
+
         }
 
         [HttpGet]
-        [Route("{word}")]
-        public IActionResult Get([FromRoute] string word)
+        [Route("exist")]
+        public IActionResult Exist([FromRoute] string word)
         {
-            return new OkObjectResult(new { exist = TurkishDictionary.Words.Contains(word.ToLower()) });
+            var exist = TurkishDictionary.Words.Contains(word.ToLower());
+            if (exist)
+            {
+                return Ok();
+            }
+            return NotFound();
 
         }
 
-        [HttpGet("count")]
-        public List<CountModel> Count()
+        [HttpGet("wordlengthcount")]
+        public List<WordLengthCountModel> Count()
         {
             var groups = TurkishDictionary.Words
             .GroupBy(n => n.Length)
-            .Select(n => new CountModel
+            .Select(n => new WordLengthCountModel
             {
                 WordLength = n.Key,
                 Count = n.Count()
