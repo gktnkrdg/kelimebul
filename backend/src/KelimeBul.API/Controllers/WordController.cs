@@ -48,8 +48,8 @@ namespace KelimeBul.API.Controllers
 
         }
 
-        [HttpGet]
-        [Route("exist")]
+        [HttpHead]
+        [Route("{word}")]
         public IActionResult Exist([FromRoute] string word)
         {
             var exist = TurkishDictionary.Words.Contains(word.ToLower());

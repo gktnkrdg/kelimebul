@@ -7,6 +7,6 @@ namespace KelimeBul.API.Service
 {
     public interface ITurkishDictionary
     {
-        void ReadTurkishWordsFile();
+        bool ReadTurkishWordsFile();
     }
 }

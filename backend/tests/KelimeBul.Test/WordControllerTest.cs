@@ -1,5 +1,7 @@
+using FluentAssertions;
 using KelimeBul.API;
 using KelimeBul.API.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Testing;
 using System;
 using System.Net;
@@ -19,7 +21,28 @@ namespace KelimeBul.Test
             Client = factory.CreateClient();
         }
 
-
+        [Theory]
+        [InlineData("elma")]
+        [InlineData("armut")]
+        [InlineData("taþýmak")]
+        [InlineData("serbest")]
+        [InlineData("uzaklaþtýrma")]
+        public async Task Exist_ShouldReturnOk_GivenCorrectWord(string word)
+        {
+            var response = await Client.SendAsync(new HttpRequestMessage(HttpMethod.Head,"api/v1/words/" + word));
+            response.EnsureSuccessStatusCode();
+        }
+        [Theory]
+        [InlineData("sjfks")]
+        [InlineData("lpjl")]
+        [InlineData("taþýmakj")]
+        [InlineData("serbestk")]
+        public async Task Exist_ShouldReturnNotFound_GivenWrongWord(string word)
+        {
+            var response = await Client.SendAsync(new HttpRequestMessage(HttpMethod.Head,"api/v1/words/" + word));
+           
+            response.StatusCode.Should().Be(HttpStatusCode.NotFound);
+        }
 
         [Theory]
         [InlineData(3)]
@@ -31,7 +54,7 @@ namespace KelimeBul.Test
         [InlineData(10)]
         [InlineData(11)]
         [InlineData(12)]
-        public async Task ReturnsTrueAvailableRandomLengthWord(int length)
+        public async Task RandomWord_ShouldCorrectWordLength(int length)
         {
             var response = await Client.GetAsync("api/v1/words/random?length="+ length);
             response.EnsureSuccessStatusCode();

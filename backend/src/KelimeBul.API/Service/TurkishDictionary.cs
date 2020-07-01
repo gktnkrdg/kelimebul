@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KelimeBul.API
 {
-    public  class TurkishDictionary:ITurkishDictionary
+    public class TurkishDictionary : ITurkishDictionary
     {
         private IWebHostEnvironment _env;
         public TurkishDictionary(IWebHostEnvironment env)
@@ -19,12 +19,22 @@ namespace KelimeBul.API
         //mythes-tr turkish database used.
         //https://github.com/maidis/mythes-tr
         public static HashSet<string> Words = new HashSet<string>();
-        public  void ReadTurkishWordsFile()
+        public bool ReadTurkishWordsFile()
         {
-            var file = Path.Combine(_env.ContentRootPath,"tr.txt");
-            foreach (var line in File.ReadLines(file)){
-                Words.Add(line);
+            try
+            {
+                var file = Path.Combine(_env.ContentRootPath, "tr.txt");
+                foreach (var line in File.ReadLines(file))
+                {
+                    Words.Add(line);
+                }
+                return true;
             }
+            catch (Exception ex)
+            {
+                return false;
+            }
+
         }
     }
 }
