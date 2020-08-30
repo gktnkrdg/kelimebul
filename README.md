@@ -8,10 +8,14 @@ Projenin Backend'i  ASP.NET Core, Frontend'i React ile yazılmıştır.
 
 
 ### DEMO
-![KelimeBul ](github/readme/demo-1.gif)
+![](.github/readme/demo-1.gif)
+
+
 Projeyi http://kelimebulmaca.herokuapp.com/ adresinden inceleyebilirsiniz.
+
 Not: Proje,  kullanıcı deneyimi açısından henüz mobil uyumlu değildir.
 
+#
 
 ### TODO
 
