@@ -54,7 +54,7 @@ namespace KelimeBul.API
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Swagger");
             });
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
 
             app.UseRouting();
 
