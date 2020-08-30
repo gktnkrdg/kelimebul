@@ -5,8 +5,7 @@ on:
   push:
     paths:
       - 'backend/*'
-      - '!.github/workflows/**'
-      - '.github/workflows/main.yml'
+      - '.github/workflows/**'
 
 jobs:
   build_kelimebul-api:
