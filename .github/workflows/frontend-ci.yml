@@ -37,4 +37,4 @@ jobs:
         git remote add heroku https://heroku:${{ secrets.HEROKU_API_KEY }}@git.heroku.com/kelimebulmaca.git
     - name: Deploy to Heroku
       run: |
-        git subtree push --prefix frontend heroku master 
+        git subtree push --prefix frontend heroku master --force
