@@ -34,7 +34,7 @@ namespace KelimeBul.API.Controllers
         }
 
         [HttpGet]
-        [Route("random")]
+        [Route("random/{length}")]
         public ApiResponse<string> Random([FromRoute]int length)
         {
             return new ApiResponse<string>(_turkishWordService.CreateRandomWord(length),true,"Success");
