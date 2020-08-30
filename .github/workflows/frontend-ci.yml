@@ -2,9 +2,10 @@ name: frontend-ci
 
 on: 
   push:
-    branches:    
-      - master 
-
+    paths:
+      - 'backend/*'
+      - '!.github/workflows/**'
+      - '.github/workflows/frontend-ci.yml'
 jobs:
   build:
 
@@ -37,4 +38,4 @@ jobs:
         git remote add heroku https://heroku:${{ secrets.HEROKU_API_KEY }}@git.heroku.com/kelimebulmaca.git
     - name: Deploy to Heroku
       run: |
-        git subtree push --prefix frontend heroku master --force
+        git subtree push --force --prefix frontend heroku master 
