@@ -19,7 +19,7 @@ namespace KelimeBul.API
 
             var ndx = 0;
             lock (sync)
-                ndx = rnd.Next(count); // returns non-negative number less than max
+                ndx = rnd.Next(count);
 
             return enumerable.ElementAt(ndx);
         }

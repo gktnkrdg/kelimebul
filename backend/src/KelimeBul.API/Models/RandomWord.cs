@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace KelimeBul.API.Service
+namespace KelimeBul.API.Models
 {
-    public interface ITurkishDictionary
+    public class RandomWord
     {
-        bool ReadTurkishWordsFile();
+        public string Word { get; set; }
     }
 }

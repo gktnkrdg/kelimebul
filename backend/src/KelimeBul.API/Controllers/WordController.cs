@@ -7,6 +7,7 @@ using System.Security.Cryptography.Xml;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using KelimeBul.API.Models;
+using KelimeBul.API.Service;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -18,33 +19,25 @@ namespace KelimeBul.API.Controllers
     [Route("api/v1/words")]
     public class WordController : ControllerBase
     {
+        public static ITurkishWordsService _turkishWordService;
+        public WordController(ITurkishWordsService turkishWordsService)
+        {
+            _turkishWordService = turkishWordsService;
+        }
+
+
         [Route("derive/{word}")]
         [HttpGet]
-        public IEnumerable<string> Derive(string word,int minLength=4,int maxLength=0)
+        public IActionResult Derive(string word,int minLength=4,int maxLength=0)
         {
-            var result = new List<string>();
-            if (word.Length > 10)
-                return result;
-            maxLength = (maxLength == 0 ? word.Length : maxLength);
-            var turkishWords = TurkishDictionary.Words.Where(x => (x.Length <= maxLength) && x.Length >= minLength);
-            foreach (var turkishWord in turkishWords)
-            {
-                if (turkishWord.CanBeMadeFromLetters(word.ToLower()))
-                    result.Add(turkishWord);
-            }
-            return result;
+            return Ok(_turkishWordService.DeriveWord(word, minLength, maxLength));
         }
 
         [HttpGet]
         [Route("random")]
-        public IActionResult Random([FromQuery][Required()] int length)
+        public ApiResponse<string> Random([FromRoute]int length)
         {
-            var word = TurkishDictionary.Words.Where(x => x.Length == length).RandomElement<string>();
-            if (word.Length > 0)
-            {
-                return new OkObjectResult(new RandomWordResponseModel { Word = word.Shuffle() });
-            }
-            return NotFound();
+            return new ApiResponse<string>(_turkishWordService.CreateRandomWord(length),true,"Success");
 
         }
 
@@ -52,7 +45,7 @@ namespace KelimeBul.API.Controllers
         [Route("{word}")]
         public IActionResult Exist([FromRoute] string word)
         {
-            var exist = TurkishDictionary.Words.Contains(word.ToLower());
+            var exist = TurkishWordsService.Words.Contains(word.ToLower());
             if (exist)
             {
                 return Ok();
@@ -62,17 +55,10 @@ namespace KelimeBul.API.Controllers
         }
 
         [HttpGet("wordlengthcount")]
-        public List<WordLengthCountModel> Count()
+        public ApiResponse<List<WordLength>> Count()
         {
-            var groups = TurkishDictionary.Words
-            .GroupBy(n => n.Length)
-            .Select(n => new WordLengthCountModel
-            {
-                WordLength = n.Key,
-                Count = n.Count()
-            })
-            .OrderBy(n => n.WordLength);
-            return groups.ToList();
+            var wordLengths = _turkishWordService.WordLengths();
+            return new ApiResponse<List<WordLength>>(wordLengths, true, "successfull");
         }
 
     }

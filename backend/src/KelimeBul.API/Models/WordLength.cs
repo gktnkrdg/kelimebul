@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace KelimeBul.API.Models
 {
-    public class WordLengthCountModel
+    public class WordLength
     {
-        public int WordLength { get; set; }
+        public int Length { get; set; }
         public int Count { get; set; }
     }
 }

@@ -33,12 +33,12 @@ namespace KelimeBul.API
             {
                 options.JsonSerializerOptions.PropertyNamingPolicy = null;
             });
-            services.AddSingleton<ITurkishDictionary, TurkishDictionary>();
+            services.AddSingleton<ITurkishWordsService, TurkishWordsService>();
         }
 
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ITurkishDictionary turkishDictionary)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ITurkishWordsService turkishDictionary)
         {
             if (env.IsDevelopment())
             {
@@ -59,7 +59,7 @@ namespace KelimeBul.API
             {
                 endpoints.MapControllers();
             });
-            turkishDictionary.ReadTurkishWordsFile();
+            turkishDictionary.ReadFromFile(Configuration.GetSection("TurkishWordsFileName").Value);
         }
     }
 }

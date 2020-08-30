@@ -9,23 +9,20 @@ namespace KelimeBul.API
 {
     public static class WordExtension
     {
-
-
-        //https://stackoverflow.com/questions/41076904/check-if-chars-of-a-string-contains-in-another-string-with-linq
-        public static bool CanBeMadeFromLetters(this string word, string tileLetters)
+        public static bool CanBeMadeFromLetters(this string word, string letters)
         {
 
-            var tileLetterCounts = GetLetterCounts(tileLetters);
+            var subLetterCounts = GetLetterCounts(letters);
             var wordLetterCounts = GetLetterCounts(word);
             return wordLetterCounts.All(letter =>
-                tileLetterCounts.ContainsKey(letter.Key)
-                && tileLetterCounts[letter.Key] >= letter.Value);
+                subLetterCounts.ContainsKey(letter.Key)
+                && subLetterCounts[letter.Key] >= letter.Value);
         }
         public static string Shuffle(this string s)
         {
             return new string(s.ToCharArray().OrderBy(x => Guid.NewGuid()).ToArray());
         }
-        //Gets dictionary of letter/# of letter in word
+
         public static Dictionary<char, int> GetLetterCounts(string word)
         {
             return word
