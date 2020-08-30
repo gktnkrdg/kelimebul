@@ -131,9 +131,9 @@ const useStyles = makeStyles((theme) => ({
                 fetch('https://kelimebul-api.herokuapp.com/api/v1/words/' + word.toLocaleLowerCase('tr-TR'),{method:"HEAD"})
                     .then(data => {
                         if (data.status == 200) {
-                            //document.querySelectorAll('input').forEach(input => {
+                            // document.querySelectorAll('input').forEach(input => {
                             //    input.value= ""
-                            //});
+                            // });
                             this.setState({
                                 correctWords: [...this.state.correctWords, word.toLocaleUpperCase('tr-TR')]
                             })

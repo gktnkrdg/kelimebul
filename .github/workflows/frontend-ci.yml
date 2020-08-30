@@ -23,13 +23,13 @@ jobs:
     
     - name: yarn install
       run: |
-        cd ./frontend/src
+        cd ./frontend
         yarn install
 
       
     - name: yarn build
       run: |
-        cd ./frontend/src
+        cd ./frontend
         yarn run build --if-present
     
     - name: Add remote origin
@@ -37,4 +37,4 @@ jobs:
         git remote add heroku https://heroku:${{ secrets.HEROKU_API_KEY }}@git.heroku.com/kelimebulmaca.git
     - name: Deploy to Heroku
       run: |
-        git subtree push --prefix frontend/src heroku master 
+        git subtree push --prefix frontend heroku master 
