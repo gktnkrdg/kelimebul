@@ -7,10 +7,10 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import { Grid } from '@material-ui/core';
 function makeRandomWord(length) {
-    return fetch('https://kelimebul-api.herokuapp.com/api/v1/words/random?length=' + length)
+    return fetch('https://kelimebul-api.herokuapp.com/api/v1/words/random/' + length)
         .then(result => result.json())
         .then((json) => {
-            return json.word.toLocaleUpperCase('tr-TR');
+            return json.Data.toLocaleUpperCase('tr-TR');
         })
         .catch(error => {
             console.error(error);
@@ -128,10 +128,9 @@ const useStyles = makeStyles((theme) => ({
                 })
             }
             else {
-                fetch('https://kelimebul-api.herokuapp.com/api/v1/words/' + word.toLocaleLowerCase('tr-TR'))
-                    .then(response => response.json())
+                fetch('https://kelimebul-api.herokuapp.com/api/v1/words/' + word.toLocaleLowerCase('tr-TR'),{method:"HEAD"})
                     .then(data => {
-                        if (data.exist == true) {
+                        if (data.status == 200) {
                             //document.querySelectorAll('input').forEach(input => {
                             //    input.value= ""
                             //});
